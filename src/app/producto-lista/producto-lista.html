@@ -1,0 +1,45 @@
+<!-- Contenedor principal centrado -->
+<div class="container text-center">
+  <!-- Título de la página -->
+  <div class="container text-center" style="margin: 30px;">
+    <h3>Sistema de Inventario</h3>
+  </div>
+
+  <!-- Tabla responsiva con estilos Bootstrap -->
+  <table class="table table-stiped table-hover align-middle">
+    <!-- Encabezados de la tabla -->
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Existencia</th>
+        <th scope="col" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <!-- Cuerpo de la tabla -->
+    <tbody>
+      <!-- Bucle @for de Angular 17+ para iterar productos -->
+      <!-- track por idProducto para optimizar renderizado -->
+      @for(producto of productos; track producto.idProducto){
+      <tr>
+        <!-- Interpolación {{}} para mostrar datos del producto -->
+        <th scope="row">{{producto.idProducto}}</th>
+        <td>{{producto.descripcion}}</td>
+        <td>{{producto.precio}}</td>
+        <td>{{producto.existencia}}</td>
+        <td class="text-center">
+          <div>
+            <!-- Botón editar con event binding (click) -->
+            <button (click)="editarProducto(producto.idProducto)"
+              class="btn btn-warning btn-sm me-3">Editar</button>
+            <!-- Botón eliminar con event binding (click) -->
+            <button (click)="eliminarProducto(producto.idProducto)"
+              class="btn btn-danger btn-sm">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
